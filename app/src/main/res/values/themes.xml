@@ -1,0 +1,12 @@
+<!-- res/values/styles.xml -->
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ASHRAF_FOOD" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+
+</resources>

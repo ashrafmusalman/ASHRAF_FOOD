@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.ashraf_food.Fragment.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/action_home_to_random"
+            app:destination="@id/random" />
+        <action
+            android:id="@+id/action_home_to_final_CATEGORY"
+            app:destination="@id/final_CATEGORY" />
+        <action
+            android:id="@+id/action_home_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favourite"
+        android:name="com.example.ashraf_food.Fragment.favourite"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
+
+    <fragment
+        android:id="@+id/categories"
+        android:name="com.example.ashraf_food.Fragment.Categories"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/random"
+        android:name="com.example.ashraf_food.Fragment.random"
+        android:label="fragment_random"
+        tools:layout="@layout/fragment_random" >
+
+        <argument
+            android:name="randomMeal"
+            app:nullable="true"
+            app:argType="com.example.ashraf_food.Dataclass.Meal" />
+        <argument
+            android:name="Random"
+            app:nullable="true"
+            app:argType="com.example.ashraf_food.Dataclass.popular" />
+        <argument
+            android:name="BottomArg"
+            app:nullable="true"
+            app:argType="com.example.ashraf_food.Dataclass.Bottom" />
+        <argument
+            android:name="category_random"
+            app:nullable="true"
+            app:argType="com.example.ashraf_food.Dataclass.Category" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/final_CATEGORY"
+        android:name="com.example.ashraf_food.Fragment.final_CATEGORY"
+        android:label="fragment_final__c_a_t_e_g_o_r_y"
+        tools:layout="@layout/fragment_final__c_a_t_e_g_o_r_y" >
+        <action
+            android:id="@+id/action_final_CATEGORY_to_random"
+            app:destination="@id/random" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.ashraf_food.Fragment.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+</navigation>

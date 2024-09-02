@@ -1,0 +1,34 @@
+<!-- res/layout/activity_main.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Your main content, for example, a RecyclerView -->
+    <TextView
+        android:id="@+id/favTView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/myfont"
+android:textColor="@color/primary"
+        android:text="Favourite Food List"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="@dimen/_30sdp"
+
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/savedRc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/favTView"
+        tools:layout_editor_absoluteX="-58dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
