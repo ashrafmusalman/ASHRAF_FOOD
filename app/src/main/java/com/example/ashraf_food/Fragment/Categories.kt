@@ -123,9 +123,7 @@ class Categories : Fragment() {
                         snackbar.setBackgroundTint(resources.getColor(R.color.primary)) // Set the background color to red
 
 // Change the text color to white
-                        val snackbarView = snackbar.view
-                        val textView = snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
-                        textView.setTextColor(resources.getColor(R.color.white)) // Set the text color to white
+
 
                         snackbar.show()
 
