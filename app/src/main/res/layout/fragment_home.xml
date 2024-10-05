@@ -4,10 +4,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipeRefreshLayout"
     tools:context="com.example.ashraf_food.Activity.MainActivity">
+
+
 
 
     <ScrollView
@@ -20,7 +22,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -28,36 +29,23 @@
 
             <LinearLayout
                 android:id="@+id/linear_header"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" >
+                app:layout_constraintTop_toTopOf="parent">
 
 
-                <TextView
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchBox"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myfont"
-                    android:text="Home"
-                    android:layout_weight="1"
-                    android:layout_marginStart="@dimen/_30sdp"
-                    android:textColor="@color/primary"
-                    android:textSize="@dimen/_30sdp"
-                    android:textStyle="bold">
-
-
-                </TextView>
-
-                <ImageView
-                    android:id="@+id/homeSearch"
-                    android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/_30sdp"
-                    android:src="@drawable/baseline_search_24"
-                    app:tint="@color/primary" />
+                    android:layout_marginStart="10dp"
+                    android:background="@null"
+                    app:iconifiedByDefault="true"
+                    app:queryBackground="@color/white"
+                    app:queryHint="Search here..." />
 
 
             </LinearLayout>
@@ -77,6 +65,13 @@
 
                 app:layout_constraintStart_toStartOf="@+id/linear_header"
                 app:layout_constraintTop_toBottomOf="@id/linear_header" />
+
+
+
+
+
+
+
 
 
             <androidx.cardview.widget.CardView
@@ -148,7 +143,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_15sdp"
                 app:cardElevation="@dimen/_20sdp"

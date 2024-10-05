@@ -8,15 +8,17 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.example.ashraf_food.Dataclass.Bottom
+import com.example.ashraf_food.Dataclass.CartMeal
 import com.example.ashraf_food.Dataclass.Category
 import com.example.ashraf_food.Dataclass.Meal
 import com.example.ashraf_food.Dataclass.popular
 
-@Database(entities = [Meal::class,Bottom::class,Category::class,popular::class], version = 2)
+@Database(entities = [Meal::class, Bottom::class, Category::class, popular::class, CartMeal::class], version = 9)
 @TypeConverters(converterOfType::class)//use only
 
 abstract class MealDatabse : RoomDatabase() {
     abstract fun mealDao(): DAO_Interface//instance of the interface
+    abstract fun cartMealDao(): CartMealDao
 
     companion object {
         @Volatile
@@ -33,7 +35,8 @@ abstract class MealDatabse : RoomDatabase() {
                     ctx.applicationContext,
                     MealDatabse::class.java,
                     "mealDb"
-                ).fallbackToDestructiveMigration()//this means if the database is destroyed and and build again
+                )
+                    .fallbackToDestructiveMigration()//this means if the database is destroyed and and build again
                     // we want to keep our previous data present inside the database
                     .build()
 

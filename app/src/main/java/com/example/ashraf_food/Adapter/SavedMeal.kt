@@ -5,10 +5,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ashraf_food.Dataclass.CartMeal
 import com.example.ashraf_food.Dataclass.Meal
 import com.example.ashraf_food.Dataclass.popular
 import com.example.ashraf_food.db.MealDatabse
@@ -27,6 +29,7 @@ class SavedMeal(val context: Context, var combinedData: ArrayList<Any>) :
     class SavedInnerClass(view: View) : RecyclerView.ViewHolder(view) {
         val savedImage: ImageView = view.findViewById(R.id.saved_image)
         val savedImageText: TextView = view.findViewById(R.id.saved_text)
+        val button: Button = view.findViewById(R.id.btnAddToCart)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedInnerClass {
@@ -53,6 +56,14 @@ class SavedMeal(val context: Context, var combinedData: ArrayList<Any>) :
             true
 
         }
+
+        holder.button.setOnClickListener {
+            if (item is Meal) {
+                onclick?.invoke(null, item)
+            } else if (item is popular) {
+                onclick?.invoke(item, null)
+            }
+        }
     }
 
 
@@ -64,7 +75,8 @@ class SavedMeal(val context: Context, var combinedData: ArrayList<Any>) :
             CoroutineScope(Dispatchers.IO).launch {
                 when (item) {
                     is Meal -> db.mealDao().delete(item)
-                    is popular -> db.mealDao().deletepopular(item) // Add deletePopular method in your DAO
+                    is popular -> db.mealDao()
+                        .deletepopular(item) // Add deletePopular method in your DAO
                 }
             }
         }
@@ -77,6 +89,7 @@ class SavedMeal(val context: Context, var combinedData: ArrayList<Any>) :
         dialog.show()
     }
 
+    var onclick: ((popular?, Meal?) -> Unit)? = null
 
 //    private fun deleteMeal(meal: Meal, position: Int) {
 //      CoroutineScope(Dispatchers.IO).launch {

@@ -2,4 +2,12 @@
     <string name="app_name">ASHRAF_FOOD</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="don_t_have_an_account_signup">\n</string>
+    <string name="please_login_to_continue_using_the_app" />
+    <string name="already_have_an_account">already have an account</string>
+    <string name="email">Email</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="log_out">Log out</string>
+    <string name="are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
+    <string name="no">No</string>
 </resources>

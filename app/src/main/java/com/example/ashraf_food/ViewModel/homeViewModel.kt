@@ -21,7 +21,6 @@ class homeViewModel : ViewModel() {
     private var mutableMealCategory = MutableLiveData<Meal>()
     private var randomMutableMeal = MutableLiveData<List<popular>>()
     private var randomBottomMeal = MutableLiveData<List<Bottom>>()
-    private var searchMutableMeal = MutableLiveData<List<Meal>>()
 
 
 
@@ -36,11 +35,9 @@ class homeViewModel : ViewModel() {
                     val randomMeal: Meal =
                         response.body()!!.meals[0]//DON'T FORGET TO PUT the BRACKET  and index 0 FOR THIS ARRAY BECAUSE THERE IS  A SINGLE IMAGE
                     // val randomMeal: Meal =response.body()!!.meals[0]  THIS LINE WILL GIVE US A RANDOMmEAL THROUGH THE API CALL
-                    mutableMealCategory.value =
-                        randomMeal//this line set the random meal image to the mutablelivemeal
-                    Log.d(response.message().toString(), "onResponse: ")
-                    Log.d("data", randomMeal.toString())
-//                    Picasso.get().load(randomMeal.strMealThumb).into(.randomImgCard)
+                    mutableMealCategory.value =randomMeal//this line set the random meal image to the mutablelivemeal
+                    Log.d("MealImageURL", "Image URL: $randomMeal")
+
 
                 } else {
                     return
@@ -104,11 +101,13 @@ class homeViewModel : ViewModel() {
 
 
 
-
+//for the random meal
     fun observeMutableLiveMealData(): LiveData<Meal> {///this function will observe if the mutableLiveMeal is changed or not  and if changed it will return that mutableLieMeal and this return will be used into the homeFragment
         return mutableMealCategory//the LiveData is immutable that helps us to make sure that nobody can change the image from outside of the class
     }
 
+
+    //for the popular meal
     fun observeRandomMutableLiveData(): LiveData<List<popular>> {
         return randomMutableMeal
     }

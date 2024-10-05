@@ -15,4 +15,11 @@
         android:id="@+id/categories"
         android:icon="@drawable/options"
         android:title="Categories" />
+
+
+    <item
+        android:id="@+id/profile_Section"
+        android:icon="@drawable/pro"
+        android:title="Profile" />
+
 </menu>

@@ -46,7 +46,7 @@ class category_img_click_AD(val context: Context, private val category_click: Ar
     override fun onBindViewHolder(holder: BottomInnerClas, position: Int) {
         val currentBottomItem = category_click[position]
         Picasso.get().load(currentBottomItem.strMealThumb).into(holder.image1)
-        holder.catTxt.text=currentBottomItem.strCategory
+        holder.catTxt.text=currentBottomItem.strMeal
         holder.itemView.setOnClickListener{
             on_ctgry_moved_item?.invoke(currentBottomItem)
         }

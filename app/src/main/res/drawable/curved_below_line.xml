@@ -1,0 +1,16 @@
+<!-- res/drawable/top_rounded_corners.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Main Background with Rounded Corners -->
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" /> <!-- Light gray for the curved portion -->
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
+                android:topLeftRadius="50dp"
+                android:topRightRadius="50dp" />
+        </shape>
+    </item>
+
+</layer-list>

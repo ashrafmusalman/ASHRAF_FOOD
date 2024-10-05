@@ -18,8 +18,6 @@ interface DAO_Interface {
     @Insert(onConflict =OnConflictStrategy.REPLACE)
     suspend fun insert(meal:Meal)
 
-
-
     //popualr
     @Insert(onConflict =OnConflictStrategy.REPLACE)
     suspend fun insertPopular(meal:popular)

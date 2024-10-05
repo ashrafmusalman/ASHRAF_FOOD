@@ -18,9 +18,7 @@
         <action
             android:id="@+id/action_home_to_final_CATEGORY"
             app:destination="@id/final_CATEGORY" />
-        <action
-            android:id="@+id/action_home_to_searchFragment"
-            app:destination="@id/searchFragment" />
+
     </fragment>
 
     <fragment
@@ -69,8 +67,21 @@
             app:destination="@id/random" />
     </fragment>
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.ashraf_food.Fragment.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/profile_Section"
+        android:name="com.example.ashraf_food.Fragment.Profile_Sectioon"
+        android:label="fragment_profile__sectioon"
+        tools:layout="@layout/fragment_profile__sectioon" >
+        <action
+            android:id="@+id/action_profile_Section_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_profile_Section_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.ashraf_food.Fragment.authentication.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+
 </navigation>

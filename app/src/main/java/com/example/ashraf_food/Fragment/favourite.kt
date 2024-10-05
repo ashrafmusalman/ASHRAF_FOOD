@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.ashraf_food.Adapter.SavedMeal
+import com.example.ashraf_food.Dataclass.CartMeal
 import com.example.ashraf_food.Dataclass.Category
 import com.example.ashraf_food.Dataclass.Meal
 import com.example.ashraf_food.Dataclass.popular
@@ -23,6 +24,7 @@ import com.example.ashraf_food.db.MealDatabse
 import com.example.foodapp.R
 import com.example.foodapp.databinding.FragmentFavouriteBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -37,6 +39,7 @@ class favourite : Fragment() {
     private lateinit var combinedData: ArrayList<Any>
     private lateinit var savedPopualrData: ArrayList<popular>
     private lateinit var finalcat: ArrayList<Category>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +65,42 @@ class favourite : Fragment() {
         observeData()
         observePopularData()
         observCategoryrData()
+
+        savedAD.onclick = { popular, meal ->
+            Toast.makeText(requireContext(), "Clicked", Toast.LENGTH_SHORT).show()
+            CoroutineScope(Dispatchers.IO).launch {
+
+                if (popular != null) {
+                    database.cartMealDao().insertCartMeal(
+                            CartMeal(
+                                popular = popular,
+                                meal = null,
+                                plusData = 0,
+                                minusData = 0,
+                                totalPrice = 25,
+                                quantity = 1
+
+
+                            )
+                    )
+                }
+
+                if (meal != null) {
+                    database.cartMealDao().insertCartMeal(
+                        CartMeal(
+                            popular = null,
+                            meal = meal,
+                            plusData = 0,
+                            minusData = 0,
+                            totalPrice = 0,
+                            quantity = 1
+
+                        )
+                    )
+                }
+
+            }
+        }
 
         binding.savedRc.setOnLongClickListener {
             Toast.makeText(requireContext(), "long pressed", Toast.LENGTH_SHORT).show()
@@ -113,11 +152,7 @@ class favourite : Fragment() {
     }
 
 
-
-
-
     // This is for swiping left and right
-
 
 
     private val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
@@ -144,6 +179,7 @@ class favourite : Fragment() {
                             database.mealDao().deletepopular(item)
                             savedPopualrData.remove(item)
                         }
+
                         is Meal -> {
                             database.mealDao().delete(item)
                             savedData.remove(item)
@@ -155,40 +191,43 @@ class favourite : Fragment() {
                         combinedData.removeAt(position)
                         savedAD.notifyItemRemoved(position)
 
-                      val snackbar=  Snackbar.make(requireView(), "Item deleted", Snackbar.LENGTH_LONG)
-                            .setAction("Undo") {
-                                GlobalScope.launch(Dispatchers.IO) {
-                                    try {
-                                        when (deletedItem) {
-                                            is Meal -> {
-                                                database.mealDao().insert(deletedItem)
-                                                savedData.add(deletedItem)
-                                            }
-                                            is popular -> {
-                                                database.mealDao().insertPopular(deletedItem)
-                                                savedPopualrData.add(deletedItem)
-                                            }
-                                        }
+                        val snackbar =
+                            Snackbar.make(requireView(), "Item deleted", Snackbar.LENGTH_LONG)
+                        snackbar.setBackgroundTint(resources.getColor(R.color.primary))
 
-                                        // Update UI on the main thread
-                                        //we need to give the snackbar on the main thread
-                                        withContext(Dispatchers.Main) {
-                                            combinedData.add(position, deletedItem)
-                                            savedAD.notifyItemInserted(position)
+                                .setAction("Undo") {
+                                    GlobalScope.launch(Dispatchers.IO) {
+                                        try {
+                                            when (deletedItem) {
+                                                is Meal -> {
+                                                    database.mealDao().insert(deletedItem)
+                                                    savedData.add(deletedItem)
+                                                }
+
+                                                is popular -> {
+                                                    database.mealDao().insertPopular(deletedItem)
+                                                    savedPopualrData.add(deletedItem)
+                                                }
+                                            }
+
+                                            // Update UI on the main thread
+                                            //we need to give the snackbar on the main thread
+                                            withContext(Dispatchers.Main) {
+                                                combinedData.add(position, deletedItem)
+                                                savedAD.notifyItemInserted(position)
+                                            }
+                                        } catch (e: Exception) {
+                                            Log.e("favourite", "Error restoring item: $e")
                                         }
-                                    } catch (e: Exception) {
-                                        Log.e("favourite", "Error restoring item: $e")
                                     }
                                 }
-                            }
 
-                        val snackbarView = snackbar.view
-                        snackbarView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary))
-                      val actionButton=  snackbarView.findViewById<Button>(com.google.android.material.R.id.snackbar_action)
-                        actionButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
 
 
 
+                        val snackbarView = snackbar.view
+                        val textView = snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+                        textView.setTextColor(resources.getColor(R.color.white))
                         snackbar.show()
                     }
                 } catch (e: Exception) {

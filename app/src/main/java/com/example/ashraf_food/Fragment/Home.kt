@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -62,7 +63,6 @@ class Home : Fragment() {
         popularList = ArrayList() // Initialize popularList here
 
 
-
         // Initializing the homeMVVM
         homeMVVM = ViewModelProvider(this)[homeViewModel::class.java]
 
@@ -87,12 +87,9 @@ class Home : Fragment() {
         onBottomImageClicked()
 
         getBottomdataFromRoom()
+        setupSearch()
 
 
-
-        binding.homeSearch.setOnClickListener{
-            findNavController().navigate(R.id.action_home_to_searchFragment)
-        }
     }
 
     private fun setUpBottomRV() {
@@ -167,19 +164,33 @@ class Home : Fragment() {
     }
 
     private fun listenObserveMutableLiveMealData() {
-        homeMVVM.observeMutableLiveMealData().observe(viewLifecycleOwner, Observer { value ->
+
+        homeMVVM.observeMutableLiveMealData().observe(viewLifecycleOwner) { value ->
+
+            binding.rvHorizontalOverPopularItem.visibility = View.VISIBLE
+
             data = value
-            Picasso.get().load(value.strMealThumb).into(binding.randomImgCard)
-        })
+
+            Picasso.get().load(value.strMealThumb).placeholder(R.drawable.ak ).into(binding.randomImgCard)
+            Log.d("MealImageURL", "Image URL: $data")
+
+        }
     }
 
     private fun listenPopularLivemealDATA() {
+        // Observe LiveData for the popular meals
         homeMVVM.observeRandomMutableLiveData().observe(viewLifecycleOwner, Observer { value ->
+            // Check if data is available
+
+            // Update your data list
             popularList.clear()
             popularList.addAll(value)
             popularAdapter.notifyDataSetChanged()
+
+
         })
     }
+
 
     //observer for the category meal of home fragment
     private fun ListenObserveBottomData() {
@@ -195,20 +206,40 @@ class Home : Fragment() {
         }
 
 
-
     }
+
     //getting the data from the room database
     fun getBottomdataFromRoom() {
         val bottomFormRoom = database.mealDao().getAllBottom()
         bottomFormRoom.observe(viewLifecycleOwner, Observer {
             bottom_list.clear()
             bottom_list.addAll(it)
-            bottomAdapter.notifyDataSetChanged()
+            bottomAdapter.notifyDataSetChanged()// this is just f
 
         })
     }
 
+    //
+    private fun setupSearch() {
+        binding.searchBox.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            //if the user merely presses the search icon from keyboard then it will do nothing
 
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {//this line run when the user write something in the search bar and press the search icon
+                // it then filter the adapter and if matches with the user input then it will return true
+                bottomAdapter.filter(newText ?: "")/// Pass the query to the adapter's filter method
+                return true
+            }
+
+
+        })
+
+
+    }
 
 
 }

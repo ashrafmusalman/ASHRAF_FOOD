@@ -5,6 +5,7 @@
     <color name="primary">#f52c56</color>
     <color name="g_black">#33405f</color>
     <color name="white">#F1F3F6</color>
+    <color name="shimmerColor">#C2C2C2</color>
 
 
 <!--    we have the write the below code of line to remove the riipple affect in the bottom menu item-->

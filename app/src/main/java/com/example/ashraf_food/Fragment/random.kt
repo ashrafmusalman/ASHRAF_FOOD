@@ -53,7 +53,7 @@ class random : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //make the bottom navigation to hide when the fragement is created
-        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottm_navigation)
+        val bottomNavigationView =       activity?.findViewById<BottomNavigationView>(R.id.bottm_navigation)
         bottomNavigationView?.visibility = View.GONE
 
         val ak = args.randomMeal//random meal
@@ -87,7 +87,8 @@ class random : Fragment() {
             ak?.let {
                 lifecycleScope.launch {
                     MealDatabse.getInstance(requireContext()).mealDao().insert(it)
-                    Toast.makeText(requireContext(), "Meal saved successfull", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Meal saved successfull", Toast.LENGTH_SHORT)
+                        .show()
 
                 }
             }
@@ -96,7 +97,8 @@ class random : Fragment() {
             random?.let {
                 lifecycleScope.launch {
                     MealDatabse.getInstance(requireContext()).mealDao().insertPopular(it)
-                    Toast.makeText(requireContext(), "Meal saved successfull", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Meal saved successfull", Toast.LENGTH_SHORT)
+                        .show()
 
                 }
             }
@@ -106,14 +108,14 @@ class random : Fragment() {
             final_cat_send?.let {
                 lifecycleScope.launch {
                     MealDatabse.getInstance(requireContext()).mealDao().insertBottom(it)
-                    Toast.makeText(requireContext(), "Meal saved successfull", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Meal saved successfull", Toast.LENGTH_SHORT)
+                        .show()
 
                 }
             }
 
 
         }
-
 
 
         //putting ak.let to reduce diffferent if else sttement and binding the data to the view
@@ -169,7 +171,7 @@ class random : Fragment() {
     private fun loadImage(url: String?, imageView: ImageView) {
         if (url != null) {
             Picasso.get()
-                .cancelRequest(imageView)//this is the best mehtod to load the images as we cancel the previous reques of imageg and then pass he next iamge
+                .cancelRequest(imageView)//this is the best method to load the images as we cancel the previous request of image and then pass he next image
 
             Picasso.get().load(url).into(imageView)
             Picasso.get().load(url).into(imageView)
@@ -177,22 +179,17 @@ class random : Fragment() {
     }
 
 
-
-
     //database related operation
-
 
 
     override fun onDestroyView() {
         super.onDestroyView()
 
         // Show the BottomNavigationView when the fragment is destroyed
-        val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottm_navigation)
+        val bottomNavigationView =
+            activity?.findViewById<BottomNavigationView>(R.id.bottm_navigation)
         bottomNavigationView?.visibility = View.VISIBLE
     }
-
-
-
 
 
 }

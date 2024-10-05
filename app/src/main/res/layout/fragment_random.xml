@@ -173,7 +173,7 @@
                 android:layout_marginTop="@dimen/_29sdp"
 
                 android:fontFamily="@font/myfont"
-                android:text="Sorry 😔 , this meal has no description"
+                android:text="Healthy food is essential for maintaining a balanced lifestyle and overall well-being. It includes a variety of nutrient-rich foods such as fruits, vegetables, whole grains, lean proteins, and healthy fats. Eating a diet filled with these items can provide the body with essential vitamins, minerals, and antioxidants. It helps boost energy levels, support the immune system, and reduce the risk of chronic diseases. Incorporating leafy greens, nuts, seeds, and omega-3-rich fish can promote heart health and brain function. Healthy eating also encourages better digestion and weight management. Choosing whole, unprocessed foods over sugary or fried items can significantly impact mental clarity and mood. A balanced diet not only nourishes the body but also enhances physical and mental performance. Eating mindfully and in moderation is the key to long-term health benefits."
                 android:textColor="@color/g_black"
                 android:textSize="@dimen/_18sdp"
                 android:textStyle="normal"
