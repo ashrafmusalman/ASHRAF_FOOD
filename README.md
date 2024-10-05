@@ -1,0 +1,7 @@
+![Screenshot_2024-10-05-23-37-16-452_com example foodapp](https://github.com/user-attachments/assets/5a0e6a20-921e-4fd7-abe6-93d104213e47)
+![Screenshot_2024-10-05-23-37-19-432_com example foodapp](https://github.com/user-attachments/assets/da01ed90-c2bf-465a-9157-19a441a0bf4a)
+![Screenshot_2024-10-05-23-37-33-249_com example foodapp](https://github.com/user-attachments/assets/00ec84ad-9066-4d51-b6d5-4155f5aa7aa3)
+![Screenshot_2024-10-05-23-37-38-158_com example foodapp](https://github.com/user-attachments/assets/7e04cbee-ffa8-4b04-b24d-1e0f47d0c4f5)
+![Screenshot_2024-10-05-23-37-47-672_com example foodapp](https://github.com/user-attachments/assets/4f2e8af4-9d86-48ed-b6f6-f99e2b5240f9)
+![Screenshot_2024-10-05-23-37-52-114_com example foodapp](https://github.com/user-attachments/assets/62e410c7-6e1d-4af1-9455-99b0dd5a8dac)
+![Screenshot_2024-10-05-23-38-14-873_com example foodapp](https://github.com/user-attachments/assets/647604dc-44fb-4ad8-a57d-aee3c72434d9)
